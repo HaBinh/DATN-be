@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.10.0"
 
-set :application, 'raan'
+set :application, 'raana'
 set :repo_url, "git@bitbucket.org:novahub/besm.git"
 set :stages, ["staging", "production"]
 set :deploy_via,      :remote_cache
