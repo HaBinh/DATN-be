@@ -1,0 +1,1 @@
+json.extract! rate, :id, :rate

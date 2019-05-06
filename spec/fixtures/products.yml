@@ -1,0 +1,13 @@
+iphone:
+  name: Iphone
+  code: MX123
+  unit: "Dien Tu"
+  default_imported_price: 1000
+  default_sale_price: 2000
+
+iphonex:
+  name: Iphonex
+  code: MX123x
+  unit: "Dien Tux"
+  default_imported_price: 1000
+  default_sale_price: 2000

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: true
+  imported_price: 1600
+  product: one
+
+two:
+  status: true
+  imported_price: 1600
+  product: two
