@@ -31,7 +31,14 @@ class StoresController < ApplicationController
     @results = ActiveRecord::Base.connection.execute(sql).to_a
 
     render 'stores/get_products'
-  end  
+  end
+
+  def get_inventory_statistics
+    @imports = Import.where('quantity > quantity_sold')
+                   .joins(:product)
+                   .select("imports.*, products.name, products.code ").order(created_at: :asc)
+    render 'stores/get_inventory_statistics';
+  end
 
   private 
       def article_params
