@@ -45,6 +45,41 @@ class DashboardsController < ApplicationController
                 FROM imports LEFT JOIN products ON imports.product_id = products.id AND imports.quantity > imports.quantity_sold"
         @expected =ActiveRecord::Base.connection.execute(sql5).to_a
         @result <<  {expected: @expected}
+
+        #Binh: thêm trả về  thu chi 30 ngày & 7 ngày
+        @imported_price_month = []
+        sql1 = "SELECT d.day, SUM(quantity*imported_price) AS total 
+              FROM (SELECT generate_series( date_trunc('day','#{30.day.ago}'::date), date_trunc('day','#{Date.today}'::date), '1 day') as day) d 
+              left join imports on date_trunc('day', created_at) = d.day group by d.day order by d.day"
+        @imported_price_month = ActiveRecord::Base.connection.execute(sql1).to_a
+        @result << {imported_price_month: @imported_price_month}
+
+        @total_amount_month = []
+        sql2 = "SELECT d.day, SUM(total_amount) AS total 
+                FROM (SELECT generate_series( date_trunc('day','#{30.day.ago}'::date), date_trunc('day','#{Date.today}'::date), '1 day') as day) d 
+                left join orders on date_trunc('day', created_at) = d.day group by d.day order by d.day"
+        @total_amount_month = ActiveRecord::Base.connection.execute(sql2).to_a
+        @result << {total_amount_month: @total_amount_month}
+
+        @profit_month = Array.new
+        (0..30).each do |n| 
+            if @imported_price_month[n]['total'] === nil
+                @imported_price_month[n]['total'] = 0
+            end
+            if @total_amount_month[n]['total'] === nil
+                @total_amount_month[n]['total'] = 0
+            end 
+            @profit_month<<{day: @total_amount_month[n]['day'][5..9] , total: @total_amount_month[n]['total'] - @imported_price_month[n]['total']}
+        end
+        @result << {profit_month: @profit_month}        
+
+        @imported_price_week = @imported_price_month[24..30]
+        @total_amount_week = @total_amount_month[24..30]
+        @profit_week = @profit_month[24..30]
+        @result << {imported_price_week: @imported_price_week}        
+        @result << {total_amount_week: @total_amount_week}        
+        @result << {profit_week: @profit_week}        
+        
         render( json:{result:@result})
     end
 end

@@ -22,3 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+```
+add file config/database.yml
+rake db:migrate
+rails s
+```

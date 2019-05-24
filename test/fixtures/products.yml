@@ -1,22 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-<<<<<<< HEAD
   name: "Phone"
   code: "C123"
 
 two:
-  name: "Lap" 
+  name: "Lap"
   code: "C434"
-=======
-  name: MyText
-  code: MyText
-  categori: MyText
-  price_sale: MyText
-
-two:
-  name: MyText
-  code: MyText
-  categori: MyText
-  price_sale: MyText
->>>>>>> 5f14d4eeeb632f48a1958b8e7ba5803ba3aba648
+#  categori: MyText
+#  price_sale: MyText
