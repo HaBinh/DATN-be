@@ -24,11 +24,12 @@ Rails.application.routes.draw do
     put 'articles/update', to: 'articles#update'
     resources :rates, only: [:index, :update]
     resources :product_discoutedrates
-    put 'rates/update', to: 'rates#update'
-    get '/get_products', to: 'stores#get_products'
-    get '/customers_in_debt', to: 'customers#get_in_debt'
-    put 'pay_total_debt/:customer_id', to: 'orders#pay_total_debt'
-    put 'change', to: 'product_discoutedrates#change'
+    put 'rates/update',                 to: 'rates#update'
+    get '/get_products',                to: 'stores#get_products'
+    get '/customers_in_debt',           to: 'customers#get_in_debt'
+    put 'pay_total_debt/:customer_id',  to: 'orders#pay_total_debt'
+    put 'change',                       to: 'product_discoutedrates#change'
+    get '/get_inventory_statistics',    to: 'stores#get_inventory_statistics'
   end
   get '*path' => redirect('/')
 end
