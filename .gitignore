@@ -19,7 +19,6 @@ config/puma.rb
 /.idea/*
 /coverage/*
 /node_modules
-/public
 
 # Ignore application configuration
 /config/application.yml
