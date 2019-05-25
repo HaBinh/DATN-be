@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     put 'pay_total_debt/:customer_id',  to: 'orders#pay_total_debt'
     put 'change',                       to: 'product_discoutedrates#change'
     get '/get_inventory_statistics',    to: 'stores#get_inventory_statistics'
+    get '/products_best_seller',        to: 'orders#products_best_seller'
   end
   get '*path' => redirect('/')
 end

@@ -132,6 +132,16 @@ class OrdersController < ApplicationController
     OrderMailer.quote_price(params[:email], params[:code_html]).deliver_now
   end
 
+
+  def products_best_seller
+    @order_items = OrderItem.past_month.group(:product_id)
+        .joins(:product)
+        .select('SUM(quantity) as quantity, SUM(amount) as total_amount, max(products.name) as name, max(products.code) as code ')
+
+    @order_items = @order_items.sort_by { |h | h[:total_amount] }.reverse!
+    render 'orders/products_best_seller';
+  end
+
   private 
 
   def render_paid_total_debt(id)
