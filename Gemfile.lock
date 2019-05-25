@@ -53,6 +53,8 @@ GEM
     bcrypt (3.1.11)
     bindex (0.5.0)
     builder (3.2.3)
+    by_star (3.0.0)
+      activesupport (> 3)
     byebug (9.1.0)
     capistrano (3.10.0)
       airbrussh (>= 1.0.0)
@@ -262,6 +264,7 @@ PLATFORMS
 
 DEPENDENCIES
   airborne
+  by_star (~> 3.0)
   byebug
   capistrano (~> 3.10)
   database_cleaner
@@ -295,4 +298,4 @@ DEPENDENCIES
   yajl-ruby
 
 BUNDLED WITH
-   1.16.0
+   1.16.2
