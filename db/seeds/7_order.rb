@@ -9,6 +9,7 @@ pro = [2100, 2000, 750, 1820, 1620, 2150, 4050, 1500, 450, 430, 540]
     created_at = Faker::Date.between((month + 1).months.ago, (month).months.ago)
     order = Order.create!(
         customer_id: customer.id,
+        customer_paid: 0,
         created_at: created_at
     )
     # create order items
@@ -16,10 +17,10 @@ pro = [2100, 2000, 750, 1820, 1620, 2150, 4050, 1500, 450, 430, 540]
     countPro = @prng.rand(1..3)
     countPro.times do
       product = Product.all.sample
-      price_sale = product.default_price_sale
+      price_sale = product.default_sale_price
       discounted_rate = @rates.sample
       quantity = @prng.rand(1..10)
-      amount = price_sale * quantity * (1 - discounted_rate)
+      amount = (price_sale * quantity * (1 - discounted_rate)).round(-3)
       total_amount += amount
 
       order.order_items.create!(
@@ -32,15 +33,17 @@ pro = [2100, 2000, 750, 1820, 1620, 2150, 4050, 1500, 450, 430, 540]
       )
     end
 
+    total_amount = total_amount.round(-3)
     customer_paid = total_amount
     a = @prng.rand(0..6)
     if a === 1
-      total *= 0.8
+      customer_paid *= 0.8
     else
       if a === 2
-        total *= 0.5
+        customer_paid *= 0.5
       end
     end
+    customer_paid = customer_paid.round(-3)
     order.update_attributes(customer_paid: customer_paid, total_amount: total_amount)
     order.set_fully_paid
   end

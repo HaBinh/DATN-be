@@ -2,12 +2,14 @@
 
 
 50.times do |n|
+  default_imported_price = @prng.rand(10..900) * 1000
+
   Product.create!(
     name: Faker::Commerce.unique.product_name,
     code: "#{n}",
     unit: "Cai",
-    default_imported_price: n+1 * 1000,
-    default_sale_price: n+100 * 1000,
+    default_imported_price: default_imported_price,
+    default_sale_price: default_imported_price +  @prng.rand(10..90) * 1000,
     category_id: Category.all.sample(1).first.id
   )
 end
