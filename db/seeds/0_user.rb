@@ -1,10 +1,4 @@
-User.create(email: 'user@example.com', 
-            nickname: 'UOne', 
-            name: 'User One', 
-            password: "monkey67",
-            password_confirmation: "monkey67", 
-            role: "manager")
-User.create(email: 'admin@admin.com', 
+User.create(email: 'admin@admin.com',
             nickname: 'Admin', 
             name: 'Admin', 
             password: "admin123",

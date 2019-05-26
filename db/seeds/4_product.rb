@@ -1,13 +1,13 @@
 @prng = Random.new
 
 
-200.times do |n| 
+50.times do |n|
   Product.create!(
-    name: "Product #{n}",
+    name: Faker::Commerce.unique.product_name,
     code: "#{n}",
     unit: "Cai",
-    default_imported_price: n+1,
-    default_sale_price: n+100,
+    default_imported_price: n+1 * 1000,
+    default_sale_price: n+100 * 1000,
     category_id: Category.all.sample(1).first.id
   )
 end
