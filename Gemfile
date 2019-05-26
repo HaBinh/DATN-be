@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'by_star', '~> 3.0'
-gem 'devise_token_auth'
+gem 'devise_token_auth', '1.1.0'
 gem 'dotenv-rails'
 gem 'faker'
 gem 'figaro'

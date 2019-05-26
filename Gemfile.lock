@@ -268,7 +268,7 @@ DEPENDENCIES
   byebug
   capistrano (~> 3.10)
   database_cleaner
-  devise_token_auth
+  devise_token_auth (~> 0.1.36)
   dotenv-rails
   factory_girl_rails (~> 4.0)
   faker
