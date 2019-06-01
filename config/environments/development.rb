@@ -56,6 +56,5 @@ Rails.application.configure do
      user_name:            'vkh@novahub.vn',
      password:             'RaanDemo',
      authentication:       'plain',
-     enable_starttls_auto: true
   }
 end
