@@ -18,12 +18,14 @@ class Article < ApplicationRecord
         if search_text.blank?
           sql2="select *, imports.created_at as time from imports
 					      JOIN products ON products.id = imports.product_id
+                ORDER BY time DESC
 					      LIMIT #{pager.per_page} OFFSET #{pager.offset}"
           @ketqua = ActiveRecord::Base.connection.execute(sql2).to_a
         else
           search_text = "%#{search_text}%"
           sql="select *, imports.created_at as time from imports
 					    JOIN products ON products.id = imports.product_id
+              ORDER BY time DESC
               WHERE (name LIKE '#{search_text}' or code LIKE '#{search_text}')
               LIMIT #{pager.per_page} OFFSET #{pager.offset}"
           sql1="select *, imports.created_at as time from imports
@@ -34,12 +36,13 @@ class Article < ApplicationRecord
           @total = ActiveRecord::Base.connection.execute(sql1).to_a.count
         end
       end
-    else 
+    else
   			sql3="select *, imports.created_at as time from imports
-					    JOIN products ON products.id = imports.product_id"
+					    JOIN products ON products.id = imports.product_id
+              ORDER BY time DESC"
   		  @ketqua = ActiveRecord::Base.connection.execute(sql3).to_a
   	end
-  	
+
 		if search_text.blank?
 			sql4="select *, imports.created_at as time from imports
 					  JOIN products ON products.id = imports.product_id"
@@ -50,4 +53,3 @@ class Article < ApplicationRecord
 		return @ketqua, @total
   end
 end
-  
